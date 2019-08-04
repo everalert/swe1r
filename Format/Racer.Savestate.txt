@@ -1,0 +1,35 @@
+﻿SWE1R Savestate File Format
+
+extension
+.e1rs
+
+v1 = pod + pod data classes data read/write, foundation for expansion into other data sets
+
+-> HEADER
+0x00	0x10	magic word
+			\211 S W E 1 R S A V S T A \r \n \032 \n
+			0x8953574531525341565354410D0A1A0A
+0x10	0x1	file format version
+0x11	0x1	format version required for loading
+0x12	0x1	endianness
+0x13	0x4	data length (byte after header to byte before eof marker)
+0x17	0x2	data offset
+0x19	0x4	CRC32 hash (0x00 to 0x18)
+
+-> DATA
+[loop start] data blocks
+	0x00	0x1	type ID (i.e. basis for pointer path building)
+				0 = pod info (struct with lap times, etc.)
+				1 = pod state (struct with speed, coord, etc.)
+				...following not implemented in v1
+				2 = race info?
+				3 = environment objects? destructible terrain etc.
+				...room to expand
+	0x01	0x4	set offset (number of bytes from pointer to start writing data)
+	0x05	0x4	length of data in block
+	0x09	0x?	the data
+	0x??	0x4	CRC32 hash (type id byte to last byte of data)
+[loop end]
+0x??	0x4	CRC32 hash (byte after header checksum to byte before this)
+
+0x??	0x8	EOF marker - .DOTDONE (0x2E444F54444F4E45)

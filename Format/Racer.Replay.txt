@@ -1,0 +1,58 @@
+﻿SWE1R Data Rich Replays File Format
+
+extension
+.e1rm ?
+
+
+HEADER
+
+0x00	0x10	magic word
+			\211 S W E 1 R M O V R E C \r \n \032 \n
+			0x8953574531524D4F565245430D0A1A0A
+0x10	0x01	file format version
+0x11	0x01	format version required for loading
+0x12	0x01	endianness
+0x13	0x04	metadata offset 
+0x17	0x04	definition offset 
+0x1B	0x04	frames offset
+0x1F	0x04	total data length (first byte of metadata to byte before whole file crc32)
+0x23	0x04	header CRC32 (0x00 to 0x18)
+
+
+METADATA
+
+0x27	0x20	player name
+0x47	0x01	track
+0x48	0x01	pod
+0x49	0x07	upgrades
+0x50	0x07	upgrade healths
+...??
+
+
+FRAME DEFINITION
+
+0x57
+[loop start] items => item count = total bytes / 9
+	0x00	0x01	type ID (i.e. basis for pointer path building)
+				0 = pod info (struct with lap times, etc.)
+				1 = pod state (struct with speed, coord, etc.)
+				...etc (same as savestate)
+	0x01	0x04	offset in struct
+	0x05	0x04	length
+[loop end]
+
+
+MOVIE FRAMES
+
+0x57 + itemcount*9
+[loop start] frames
+	[loop start] items, data only as lengths, order, etc are defined above
+		0x00	0x??	datapoint of arbitrary length (as defined above)
+	[loop end]
+[loop end]
+
+
+EOF
+
+0x??	0x04	whole file CRC32
+0x??	0x08	EOF marker - .DOTDONE (0x2E444F54444F4E45)

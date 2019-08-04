@@ -1,0 +1,9 @@
+﻿SWE1R Practice Tool Configuration File Format
+
+extension
+.txt / .xml ?
+
+- hotkeys
+- feature states
+- window state
+...??
