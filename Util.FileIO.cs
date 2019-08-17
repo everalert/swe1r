@@ -9,9 +9,13 @@ namespace SWE1R.Util
 {
     public class FileIO
     {
-        
+
         //writing
 
+        public static void WriteChunk(FileStream file, byte[] data)
+        {
+            file.Write(data, 0, data.Length);
+        }
         public static void WriteChunk(FileStream file, byte[] data, ref uint crc32)
         {
             file.Write(data, 0, data.Length);

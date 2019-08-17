@@ -120,9 +120,9 @@ namespace SWE1R.Racer
             CheckExportable(true);
 
             if (File.Exists(filename))
-                File.Delete(filename);
+                //check to confirm? or do it before calling this?
 
-            using (FileStream file = File.OpenWrite(filename))
+            using (FileStream file = File.Create(filename))
             {
                 uint CRC32 = 0;
 

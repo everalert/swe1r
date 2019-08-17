@@ -63,5 +63,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Format\CtrlPan.Config.txt" />
+    <Content Include="Format\Racer.Replay.txt" />
+    <Content Include="Format\Racer.Savestate.txt" />
+    <Content Include="Format\Racer.Time.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

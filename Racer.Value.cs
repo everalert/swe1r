@@ -150,6 +150,17 @@ namespace SWE1R.Racer
 
         readonly public struct Upgrade
         {
+            public enum Id
+            {
+                AntiSkid = 0x0,
+                TurnResponse = 0x1,
+                Acceleration = 0x2,
+                MaxSpeed = 0x3,
+                AirBrakeInv = 0x4,
+                CoolRate = 0x5,
+                RepairRate = 0x6
+            }
+
             public const byte AntiSkid = 0x0,
                 TurnResponse = 0x1,
                 Acceleration = 0x2,
@@ -158,16 +169,97 @@ namespace SWE1R.Racer
                 CoolRate = 0x5,
                 RepairRate = 0x6;
 
-            readonly public static Dictionary<byte, string> Name = new Dictionary<byte, string>()
-                {
-                    {AntiSkid,     "Anti Skid" },
-                    {TurnResponse, "Turn Response" },
-                    {Acceleration, "Acceleration" },
-                    {MaxSpeed,     "Max Speed" },
-                    {AirBrakeInv,  "Air Brake Inv" },
-                    {CoolRate,     "Cool Rate" },
-                    {RepairRate,   "Repair Rate" }
-                };
+            readonly public static Dictionary<byte,string> AntiSkidName = new Dictionary<byte, string>()
+            {
+                { 0, "R-20 Repulsorgrip" },
+                { 1, "R-60 Repulsorgrip" },
+                { 2, "R-80 Repulsorgrip" },
+                { 3, "R-100 Repulsorgrip" },
+                { 4, "R-300 Repulsorgrip" },
+                { 5, "R-600 Repulsorgrip" }
+            };
+
+            readonly public static Dictionary<byte, string> TurnResponseName = new Dictionary<byte, string>
+            {
+                { 0, "Control Linkage" },
+                { 1, "Control Shift Plate" },
+                { 2, "Control Vectro Jet" },
+                { 3, "Control Coupling" },
+                { 4, "Control Nozzle" },
+                { 5, "Control Stabilizer" }
+            };
+
+            readonly public static Dictionary<byte, string> AccelerationName = new Dictionary<byte, string>
+            {
+                { 0, "Dual 20PCX Injector" },
+                { 1, "44 PCX Injector" },
+                { 2, "Dual 32PCX Injector" },
+                { 3, "Quad 32PCX Injector" },
+                { 4, "Quad 44PCX Injector" },
+                { 5, "Mag-6 Injector" }
+            };
+
+            readonly public static Dictionary<byte, string> MaxSpeedName = new Dictionary<byte, string>
+            {
+                { 0, "Plug2 Thrust Coil" },
+                { 1,  "Plug3 Thrust Coil" },
+                { 2,  "Plug5 Thrust Coil" },
+                { 3,  "Plug8 Thrust Coil" },
+                { 4, "Block5 Thrust Coil" },
+                { 5, "Block6 Thrust Coil" }
+            };
+
+            readonly public static Dictionary<byte, string> AirBrakeInvName = new Dictionary<byte, string>
+            {
+                { 0,  "Mark II Air Brake" },
+                { 1,  "Mark III Air Brake" },
+                { 2,  "Mark IV Air Brake" },
+                { 3, "Mark V Air Brake" },
+                { 4, "Tri-Jet Air Brake" },
+                { 5, "Quadrijet Air Brake" }
+            };
+
+            readonly public static Dictionary<byte, string> CoolRateName = new Dictionary<byte, string>
+            {
+                { 0, "Coolant Radiator" },
+                { 1, "Stack-3 Radiator" },
+                { 2, "Stack-6 Radiator" },
+                { 3, "Rod Coolant Pump" },
+                { 4, "Dual Coolant Pump" },
+                { 5, "Turbo Cooland Pump" }
+            };
+
+            readonly public static Dictionary<byte, string> RepairRateName = new Dictionary<byte, string>
+            {
+                { 0, "Single Power Cell" },
+                { 1, "Dual Power Cell" },
+                { 2, "Quad Power Cell" },
+                { 3, "Cluster Power Plug" },
+                { 4, "Rotary Power Plug" },
+                { 5, "Cluster2 Power Plug" }
+            };
+
+            readonly public static Dictionary<Id, Dictionary<byte, string>> Name = new Dictionary<Id, Dictionary<byte, string>>()
+            {
+                { Id.AntiSkid, AntiSkidName },
+                { Id.TurnResponse, TurnResponseName },
+                { Id.Acceleration, AccelerationName },
+                { Id.MaxSpeed, MaxSpeedName },
+                { Id.AirBrakeInv, AirBrakeInvName },
+                { Id.CoolRate, CoolRateName },
+                { Id.RepairRate, RepairRateName }
+            };
+
+            readonly public static Dictionary<Id, string> Title = new Dictionary<Id, string>()
+            {
+                {Id.AntiSkid,     "Anti Skid" },
+                {Id.TurnResponse, "Turn Response" },
+                {Id.Acceleration, "Acceleration" },
+                {Id.MaxSpeed,     "Max Speed" },
+                {Id.AirBrakeInv,  "Air Brake Inv" },
+                {Id.CoolRate,     "Cool Rate" },
+                {Id.RepairRate,   "Repair Rate" }
+            };
 
             readonly public static Dictionary<byte, UpgradeStats> Stats = new Dictionary<byte, UpgradeStats>()
                 {
